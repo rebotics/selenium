@@ -2,7 +2,7 @@
 Selenium 3 is incompatible with Python 3.9:\
 https://github.com/SeleniumHQ/selenium/issues/8762
 
-Author recommend Selenium 4.0.0a5 as a "drop in" replacement,
+Author recommends Selenium 4.0.0a5 as a "drop in" replacement,
 But it has missing config files, so gives the error:\
 `FileNotFoundError: [Errno 2] No such file or directory: '/usr/local/lib/python3.9/dist-packages/selenium/webdriver/firefox/webdriver_prefs.json'`
 
@@ -16,7 +16,7 @@ Due to `phantom.js` missing. Probably, it was removed in Selenium 4.0.0.
 
 ## Prerequisites
 **Note:** You don't need to follow the steps described in selenium documentation!
-They are for building drivers themselves, not selenium bindings!
+They are for building drivers themselves, not the python bindings!
 
 Official python guide for building packages:\
 https://packaging.python.org/guides/distributing-packages-using-setuptools/
@@ -41,14 +41,19 @@ To avoid version conflicts with original selenium change versions in `py/setup.p
 
 ## Missing files
 
-Selenium-Python uses some JS and webdriver files which are not present in the `py` folder.
-They are put in place during the build by a pipeline, which we don't have.
+Selenium-Python uses some JavaScript and other files which are not present in the `py` folder.
+They are built and put in place by the pipeline, which we don't have.
 Instead, we copy them from installed Selenium versions.
 
-List of files:
+Required files:
 * `selenium/webdriver/remote/getAttribute.js`
 * `selenium/webdriver/remote/isDisplayed.js`
 * `selenium/webdriver/firefox/webdriver_prefs.json`
+
+Other files, seem to be not used:
+* `selenium/webdriver/firefox/webdriver.xpi`
+* `selenium/webdriver/firefox/x86/x_ignore_nofocus.so`
+* `selenium/webdriver/firefox/amd64/x_ignore_nofocus.so`
 
 Current version:\
 `3.141.0`.
